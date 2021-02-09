@@ -1,13 +1,26 @@
-import React from 'react';
-import{BrowserRouter as Router} from "react-router-dom";
+import React,{useState} from 'react';
+import{BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Auth from "../routes/Auth";
+import Home from "../routes/Home";
 
-export default () => {
-    const [isLoggedIn, setIsLoggedIn] = useState();
+const AppRouter = ({isLoggedIn}) => {
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
     return(
       <Router>
           <Switch>
-              {isLoggedIn ?}
+              {isLoggedIn ?
+                  <>
+                      <Route path={"/"} exact={true}>
+                        <Home />
+                      </Route>
+                  </>
+                  :
+                  <Route>
+                      <Auth path={"/"} exact={true}/>
+                  </Route>}
           </Switch>
       </Router>
     );
 }
+
+export default AppRouter;
